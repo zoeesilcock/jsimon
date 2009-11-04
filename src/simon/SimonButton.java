@@ -31,9 +31,13 @@ public class SimonButton extends JComponent implements MouseListener{
 		this.position = p;
 		this.window = w;
 		
+		File file = new File(System.getProperty("java.class.path"));
+		String path = file.getParent();
+		path += "/";
+		
 		try {
-		    onImage = ImageIO.read(new File("images/" + this.color + "_on.png"));
-		    offImage = ImageIO.read(new File("images/" + this.color + "_off.png"));
+		    onImage = ImageIO.read(new File(path + "data/images/" + this.color + "_on.png"));
+		    offImage = ImageIO.read(new File(path + "data/images/" + this.color + "_off.png"));
 		} catch (IOException e) {
 		}
 		
@@ -41,7 +45,7 @@ public class SimonButton extends JComponent implements MouseListener{
 		this.addMouseListener(this);
 		
         try {
-        	AudioInputStream ain = AudioSystem.getAudioInputStream(new File("sounds/" + s));
+        	AudioInputStream ain = AudioSystem.getAudioInputStream(new File(path + "data/sounds/" + s));
             DataLine.Info info =  new DataLine.Info(Clip.class,ain.getFormat());
             sound = (Clip) AudioSystem.getLine(info);
             sound.open(ain);

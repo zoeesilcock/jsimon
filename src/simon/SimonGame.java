@@ -1,5 +1,6 @@
 package simon;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -22,8 +23,12 @@ public class SimonGame {
 	final String settingsFile = "settings.dat";
 	
 	public SimonGame(){
-		highscoreList = new HighscoreList(highscoreFile, maxHighscores);
-		settings = new SimonSettings(settingsFile);
+		File file = new File(System.getProperty("java.class.path"));
+		String path = file.getParent();
+		path += "/data/";
+		
+		highscoreList = new HighscoreList(path + highscoreFile, maxHighscores);
+		settings = new SimonSettings(path + settingsFile);
 		window = new SimonWindow(this);
 	}
 	
