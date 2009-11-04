@@ -38,6 +38,16 @@ public class Highscore implements Serializable, Comparable<Highscore>{
 
 	@Override
 	public int compareTo(Highscore o) {
-		return o.getScore() - this.getScore();
+		int v = o.getScore() - this.getScore();
+		
+		if(v == 0){
+			int thisTime = (int) (this.getSecondsPerMove() * 1000);
+			int thatTime = (int) (o.getSecondsPerMove() * 1000);
+			
+			v = thisTime - thatTime;
+			System.out.println(v);
+		}
+		
+		return v;
 	}
 }
