@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class HighscoreWindow extends JFrame{
