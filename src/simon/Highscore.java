@@ -45,7 +45,6 @@ public class Highscore implements Serializable, Comparable<Highscore>{
 			int thatTime = (int) (o.getSecondsPerMove() * 1000);
 			
 			v = thisTime - thatTime;
-			System.out.println(v);
 		}
 		
 		return v;
