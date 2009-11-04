@@ -83,6 +83,7 @@ public class SimonGame {
 					if(highscoreWin != null){
 						highscoreWin.setTableData(highscoreList.getList());
 					}
+					showHighscoreList();
 				}
 			}
 		}else if(position == sequence.size()-1){
