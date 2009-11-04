@@ -3,8 +3,10 @@ package simon;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class HighscoreWindow extends JFrame{
@@ -16,22 +18,23 @@ public class HighscoreWindow extends JFrame{
 	public HighscoreWindow(ArrayList<Highscore> highscores){
 		super("Highscore list");
 		this.setLayout(null);
-		this.setSize(300, 350);
+		this.setSize(300, 320);
 		this.getContentPane().setBackground(Color.white);
 		
 		String[] columnNames = {"#", "Name", "Score", "Sec/move"};
 		tableModel = new DefaultTableModel(null, columnNames);
 		table = new JTable(tableModel);
 		
-		table.setBounds(20, 30, 240, 320);
+		table.setBounds(0, 20, 290, 270);
 		table.setCellSelectionEnabled(false);
 		table.setColumnSelectionAllowed(false);
 		table.setRowHeight(25);
 		table.setEnabled(false);
 		table.setShowGrid(false);
+		table.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		table.getColumnModel().getColumn(0).setPreferredWidth(40);
 		table.getColumnModel().getColumn(2).setPreferredWidth(40);
-		table.getTableHeader().setBounds(20,10,240,20);
+		table.getTableHeader().setBounds(0, 0, 290, 20);
 		this.add(table.getTableHeader());
 		this.add(table);
 		
