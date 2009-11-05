@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
 
-public class SimonWindow extends JFrame implements ActionListener, ItemListener{
+public class SimonWindow extends JFrame implements ActionListener, ItemListener, KeyListener{
 	private static final long serialVersionUID = 1847004660115073987L;
 
 	private ArrayList<SimonButton> buttons = new ArrayList<SimonButton>();
@@ -52,6 +54,7 @@ public class SimonWindow extends JFrame implements ActionListener, ItemListener{
 			buttons.add(b);
 			this.getContentPane().add(b);
 			b.setEnabled(false);
+			b.setFocusable(false);
 		}
 		
 		centerLabel1 = new JLabel("", SwingConstants.CENTER);
@@ -96,7 +99,11 @@ public class SimonWindow extends JFrame implements ActionListener, ItemListener{
 				theGame.quit();
 			}
 		});
-
+		
+		this.setFocusable(true);
+		this.requestFocusInWindow();
+		this.addKeyListener(this);
+		
 		this.setVisible(true);
 	}
 	
@@ -160,5 +167,54 @@ public class SimonWindow extends JFrame implements ActionListener, ItemListener{
 
 	public boolean isSoundEnabled() {
 		return theGame.getSettings().isSoundEnabled();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		int key = arg0.getKeyCode();
+		SimonButton button = null;
+		
+		if(key == KeyEvent.VK_UP){
+			button = buttons.get(0);
+		}else if(key == KeyEvent.VK_RIGHT){
+			button = buttons.get(1);
+		}else if(key == KeyEvent.VK_DOWN){
+			button = buttons.get(2);
+		}else if(key == KeyEvent.VK_LEFT){
+			button = buttons.get(3);
+		}
+		
+		if(button != null){
+			button.setButtonOn(true);
+			button.repaint();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		int key = arg0.getKeyCode();
+		SimonButton button = null;
+		
+		if(key == KeyEvent.VK_UP){
+			button = buttons.get(0);
+		}else if(key == KeyEvent.VK_RIGHT){
+			button = buttons.get(1);
+		}else if(key == KeyEvent.VK_DOWN){
+			button = buttons.get(2);
+		}else if(key == KeyEvent.VK_LEFT){
+			button = buttons.get(3);
+		}
+		
+		if(button != null){
+			button.setButtonOn(false);
+			button.repaint();
+			this.buttonPressed(button);
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
