@@ -8,8 +8,8 @@ public class HighscoreList extends MySerializer<ArrayList<Highscore>>{
 	private ArrayList<Highscore> highscoreList = new ArrayList<Highscore>();
 	private int maxHighscores;
 	
-	public HighscoreList(String fileName, int max){
-		super(fileName);
+	public HighscoreList(String filePath, int max){
+		super(filePath);
 		this.maxHighscores = max;
 		
 		highscoreList = loadObject();

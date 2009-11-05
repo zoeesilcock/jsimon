@@ -40,7 +40,6 @@ public class SimonWindow extends JFrame implements ActionListener, ItemListener,
 	
 	final String[] colors = {"red", "green", "blue", "yellow"};
 	final Point[] positions = {new Point(110, 20), new Point(313, 80), new Point(110, 283), new Point(50, 80)};
-	final String[] sounds = {"red.wav", "green.wav", "blue.wav", "yellow.wav"};
 	
 	public SimonWindow(SimonGame game){
 		super("Simon");
@@ -50,7 +49,7 @@ public class SimonWindow extends JFrame implements ActionListener, ItemListener,
 		this.getContentPane().setLayout(null);
 		
 		for(int i = 0; i < 4; i++){
-			SimonButton b = new SimonButton(colors[i], positions[i], sounds[i], this);
+			SimonButton b = new SimonButton(colors[i], positions[i], this);
 			buttons.add(b);
 			this.getContentPane().add(b);
 			b.setEnabled(false);

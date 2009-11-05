@@ -6,8 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.PixelGrabber;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
@@ -26,18 +26,14 @@ public class SimonButton extends JComponent implements MouseListener{
 	private SimonWindow window;
 	private Clip sound;
 	
-	public SimonButton(String c, Point p, String s, SimonWindow w){
+	public SimonButton(String c, Point p, SimonWindow w){
 		this.color = c;
 		this.position = p;
 		this.window = w;
 		
-		File file = new File(System.getProperty("java.class.path"));
-		String path = file.getParent();
-		path += "/";
-		
 		try {
-		    onImage = ImageIO.read(new File(path + "data/images/" + this.color + "_on.png"));
-		    offImage = ImageIO.read(new File(path + "data/images/" + this.color + "_off.png"));
+		    onImage = ImageIO.read(this.getClass().getResource("/data/images/" + this.color + "_on.png"));
+		    offImage = ImageIO.read(this.getClass().getResource("/data/images/" + this.color + "_off.png"));
 		} catch (IOException e) {
 		}
 		
@@ -45,7 +41,7 @@ public class SimonButton extends JComponent implements MouseListener{
 		this.addMouseListener(this);
 		
         try {
-        	AudioInputStream ain = AudioSystem.getAudioInputStream(new File(path + "data/sounds/" + s));
+        	AudioInputStream ain = AudioSystem.getAudioInputStream(this.getClass().getResource("/data/sounds/" + this.color + ".wav"));
             DataLine.Info info =  new DataLine.Info(Clip.class,ain.getFormat());
             sound = (Clip) AudioSystem.getLine(info);
             sound.open(ain);
