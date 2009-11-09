@@ -18,8 +18,8 @@ public class SimonGame {
 	final int timeOn = 500;
 	final int timeOff = 250;
 	final int maxHighscores = 10;
-	final String highscoreFile = "/data/highscores.dat";
-	final String settingsFile = "/data/settings.dat";
+	final String highscoreFile = "data/highscores.dat";
+	final String settingsFile = "data/settings.dat";
 	
 	public SimonGame(){		
 		highscoreList = new HighscoreList(highscoreFile, maxHighscores);

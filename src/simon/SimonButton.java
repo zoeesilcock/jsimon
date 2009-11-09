@@ -31,8 +31,8 @@ public class SimonButton extends JComponent implements MouseListener{
 		this.window = w;
 		
 		try {
-		    onImage = ImageIO.read(this.getClass().getResource("/data/images/" + this.color + "_on.png"));
-		    offImage = ImageIO.read(this.getClass().getResource("/data/images/" + this.color + "_off.png"));
+		    onImage = ImageIO.read(this.getClass().getResource("data/images/" + this.color + "_on.png"));
+		    offImage = ImageIO.read(this.getClass().getResource("data/images/" + this.color + "_off.png"));
 		} catch (IOException e) {
 		}
 		
