@@ -1,25 +1,26 @@
 package simon;
 
-import java.io.Serializable;
+import  java.util.prefs.Preferences;
 
-public class SimonSettings extends MySerializer<SimonSettings> implements Serializable{
+public class SimonSettings{
 	private static final long serialVersionUID = -1161131003806608454L;
-	private boolean soundEnabled = true;
-	private int dificulty = 0;
+	private static final String PREFS_DIFICULTY = "simonDificulty";
+	private static final String PREFS_SOUND_ENABLED = "simonSoundEnabled";
 	
-	public SimonSettings(String filePath){
-		super(filePath);
+	private boolean soundEnabled;
+	private int dificulty;
+	private Preferences prefs;
+	
+	public SimonSettings(){
+		prefs = Preferences.userNodeForPackage(this.getClass());
 		
-		SimonSettings temp = loadObject();
-		if(temp != null){
-			this.soundEnabled = temp.soundEnabled;
-			this.dificulty = temp.dificulty;
-		}
+		this.dificulty = prefs.getInt(PREFS_DIFICULTY, 0);
+		this.soundEnabled = prefs.getBoolean(PREFS_SOUND_ENABLED, true);
 	}
 	
 	public void setSoundEnabled(boolean enabled){
 		this.soundEnabled = enabled;
-		saveObject(this);
+		prefs.putBoolean(PREFS_SOUND_ENABLED, enabled);
 	}
 
 	public boolean isSoundEnabled(){
@@ -28,7 +29,7 @@ public class SimonSettings extends MySerializer<SimonSettings> implements Serial
 
 	public void setDificulty(int dificulty) {
 		this.dificulty = dificulty;
-		saveObject(this);
+		prefs.putInt(PREFS_DIFICULTY, dificulty);
 	}
 
 	public int getDificulty() {
