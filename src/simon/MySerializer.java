@@ -1,10 +1,11 @@
 package simon;
 
 import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -21,7 +22,7 @@ public class MySerializer<T> implements Serializable{
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
 		try{
-			fos = new FileOutputStream(this.getClass().getResource(filePath).getPath());
+			fos = new FileOutputStream(new File(filePath));
 		 	out = new ObjectOutputStream(fos);
 		 	out.writeObject(object);
 		 	out.close();
@@ -32,15 +33,14 @@ public class MySerializer<T> implements Serializable{
 	
 	@SuppressWarnings("unchecked")
 	public T loadObject(){
+		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		Object object = null;
 		try{
-			InputStream fileStream = this.getClass().getResourceAsStream(filePath);
-			if(fileStream != null){
-				in = new ObjectInputStream(fileStream);
-				object = in.readObject();
-				in.close();
-			}
+			fis = new FileInputStream(new File(filePath));
+			in = new ObjectInputStream(fis);
+			object = in.readObject();
+			in.close();
 		}catch(FileNotFoundException e){
 			
 		}catch (EOFException e){
