@@ -1,0 +1,1 @@
+Loosely based on the 1980's board game [Simon](http://en.wikipedia.org/wiki/Simon_%28game%29).
